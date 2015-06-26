@@ -26,17 +26,17 @@ class CkHelper extends AppHelper {
         }
 
         if (!empty($options['label'])) {
-        	echo '<h2>'.$options['label'].'</h2>';
+            echo $this->Form->label($model . '.' . $field, $options['label']);
         } else {
-        	echo '<h2>'.Inflector::humanize(Inflector::underscore($field)).'</h2>';
+        	echo $this->Form->label($model . '.' . $field, Inflector::humanize(Inflector::underscore($field)));
         }
 
         if (!empty($options['value'])) {
             $this->request->data[$model][$field] = $options['value'];
         }
 
-        echo $this->Form->error($model.'.'.$field);
-        echo $this->Form->input($model.'.'.$field, array('type' => 'textarea', 'label' => false, 'error' => false, 'required' => false, 'div' => false));
+        echo $this->Form->error($model . '.' . $field);
+        echo $this->Form->input($model . '.' . $field, array('type' => 'textarea', 'label' => false, 'error' => false, 'required' => false, 'div' => false));
 		?>
 			<script type="text/javascript">
 				CKEDITOR.replace('<?php echo Inflector::camelize($model.'_'.$field); ?>');
